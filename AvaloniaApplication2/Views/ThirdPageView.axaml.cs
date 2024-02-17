@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 
-
 namespace AvaloniaApplication2.Views
 {
     public partial class ThirdPageView : UserControl
@@ -20,7 +19,6 @@ namespace AvaloniaApplication2.Views
         // словарь подгруженных файлов (key:путь к файлу - value:номер строки, в которую подгружено) 
         Dictionary<string, int> file_path = new Dictionary<string, int>();
         int owner; // получение выбранного направления из comboBox
-
 
         public ThirdPageView()
         {
@@ -111,7 +109,6 @@ namespace AvaloniaApplication2.Views
             {
                 file_path.Remove(kvp.Key);
             }
-
         }
 
         async void buttonOpenFile_Click(object sender, Avalonia.Interactivity.RoutedEventArgs e)
@@ -147,7 +144,6 @@ namespace AvaloniaApplication2.Views
                    listBox.Items.Add(System.IO.Path.GetFileName(filename)); // добавление в список для отображения
                }
            }
-            
         }
 
         private void ReadFiles_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
@@ -180,7 +176,6 @@ namespace AvaloniaApplication2.Views
                         thirdModel.WorkWithExcel(files.Key, owner); // считывание excel файла
                     }
                 }
-
                 // При клике на кнопку вызываем событие во ViewModel и активируем кнопку
                 if (DataContext is ThirdPageViewModel viewModel && StaticClass.datas.Count > 0)
                 {
@@ -192,9 +187,8 @@ namespace AvaloniaApplication2.Views
             }
             else
             {
-                StaticClass.ShowMessageBox("Установите количество и выберите файлы!", "Предупреждение", ButtonEnum.Ok);
+                StaticClass.ShowMessageBox("Установите количество и выберите файлы!", "Предупреждение", ButtonEnum.Ok); // что мне делать
             }
         }
     }
-
 }
