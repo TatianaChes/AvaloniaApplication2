@@ -187,7 +187,7 @@ namespace AvaloniaApplication2.Views
             }
             else
             {
-                StaticClass.ShowMessageBox("Установите количество и выберите файлы!", "Предупреждение", ButtonEnum.Ok); // помогите
+                StaticClass.ShowMessageBox("Установите количество и выберите файлы!", "Предупреждение", ButtonEnum.Ok); // что мне делать
             }
         }
     }
