@@ -40,25 +40,25 @@ namespace AvaloniaApplication2.Model
             {
                 try
                 {
-                    ////  Подключение к базе данных SQL Server
-                    //using (SqlConnection sqlConn = new SqlConnection(ConnectionString)) // при использовании using, close не прописывается 
-                    //{
-                    //    sqlConn.Open();
-                    //    string commandText = "INSERT INTO fortest.tableforNedopostavki (ko_all,nomk_ls,store_code,rpt_date) " +
-                    //        "VALUES (@value1, @value2, @value3, @value4)";
-                    //    foreach (DataRow row in dataItem.table.Rows)
-                    //    {
-                    //        using (SqlCommand command = new SqlCommand(commandText, sqlConn))
-                    //        {
-                    //            command.Parameters.AddWithValue("@value1", Convert.ToDecimal(row[6]));
-                    //            command.Parameters.AddWithValue("@value2", Convert.ToDecimal(row[9]));
-                    //            command.Parameters.AddWithValue("@value3", Convert.ToInt16(dataItem.owner));
-                    //            command.Parameters.AddWithValue("@value4", Convert.ToDateTime(lastDayMonthAgo));
-                    //            command.ExecuteNonQuery();
-                    //        }
-                    //    }
+                    //  Подключение к базе данных SQL Server
+                    using (SqlConnection sqlConn = new SqlConnection(ConnectionString)) // при использовании using, close не прописывается 
+                    {
+                        sqlConn.Open();
+                        string commandText = "INSERT INTO fortest.tableforNedopostavki (ko_all,nomk_ls,store_code,rpt_date) " +
+                            "VALUES (@value1, @value2, @value3, @value4)";
+                        foreach (DataRow row in dataItem.table.Rows)
+                        {
+                            using (SqlCommand command = new SqlCommand(commandText, sqlConn))
+                            {
+                                command.Parameters.AddWithValue("@value1", Convert.ToDecimal(row[6]));
+                                command.Parameters.AddWithValue("@value2", Convert.ToDecimal(row[9]));
+                                command.Parameters.AddWithValue("@value3", Convert.ToInt16(dataItem.owner));
+                                command.Parameters.AddWithValue("@value4", Convert.ToDateTime(lastDayMonthAgo));
+                                command.ExecuteNonQuery();
+                            }
+                        }
 
-                    //}
+                    }
                     //получение общей суммы столбца DataTable через linq
                     decimal sum = dataItem.table.AsEnumerable().Sum(x => Convert.ToDecimal(x["Сумма остатка по контракту"]));
                     string firstColumnValue = dataItem.file_name.Substring(dataItem.file_name.LastIndexOf(("\\")) + 1); // имя файла

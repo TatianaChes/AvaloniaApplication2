@@ -59,7 +59,7 @@ namespace AvaloniaApplication2.ViewModels
             if (!string.IsNullOrEmpty(_MailAddress) && !string.IsNullOrEmpty(_Password) && _Password.Length >= 9)
             {
 
-                if (_Password.Length == 11) //second.CheckConnectionDB(_MailAddress, _Password))
+                if (second.CheckConnectionDB(_MailAddress, _Password))
                 {
                     CanNavigateNext = true;
                     MessageForeground = Brushes.Green;
