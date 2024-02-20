@@ -40,6 +40,7 @@ namespace AvaloniaApplication2.Model
                     else {
                         StaticClass.ShowMessageBox($"Проверьте содержимое столбцов {files_path.Substring(files_path.LastIndexOf(("\\")) + 1)} на соответствие!", "Оповещение", ButtonEnum.OkCancel);
                         StaticClass.datas.Clear();
+                        return;
                     }
                 }
             }
