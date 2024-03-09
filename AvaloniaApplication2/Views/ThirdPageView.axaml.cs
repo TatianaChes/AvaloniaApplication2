@@ -36,9 +36,10 @@ namespace AvaloniaApplication2.Views
         private void AddItemsBbutton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
             wrapPannel.Children.Clear(); // очистка перед отображением количества 
+            file_path.Clear(); // на случай, если пользователь указал неверное количество и уже подгрузил файлы
             int countInput = Convert.ToInt32(number.Text?.ToString()); // введенное количество 
             create_elements(countInput); // метод добавление элементов на экран 
-            file_path.Clear(); // на случай, если пользователь указал неверное количество и уже подгрузил файлы
+           
         }
 
         void create_elements(int count)
@@ -148,6 +149,7 @@ namespace AvaloniaApplication2.Views
 
         private void ReadFiles_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
+            StaticClass.LetRead = true;
             if (file_path.Any())
             {
                 foreach (var files in file_path) // перебираем массив с названиями файлов 
@@ -156,6 +158,7 @@ namespace AvaloniaApplication2.Views
                     if (comboBox.SelectedIndex == -1)
                     {
                         StaticClass.ShowMessageBox("Вы не выбрали направление!", "Предупреждение", ButtonEnum.Ok);
+                        StaticClass.datas.Clear();
                         return;
                     }
                     else
@@ -177,12 +180,15 @@ namespace AvaloniaApplication2.Views
                     }
                 }
                 // При клике на кнопку вызываем событие во ViewModel и активируем кнопку
-                if (DataContext is ThirdPageViewModel viewModel && StaticClass.datas.Count > 0)
+                if (DataContext is ThirdPageViewModel viewModel && StaticClass.LetRead == true && StaticClass.datas.Count > 0)
                 {
                     secondModel.WriteToDataBase(); // запись в БД
                     StaticClass.ShowMessageBox("Данные успешно записаны в базу данных MS SQL.", "Оповещение", ButtonEnum.OkCancel);
                     viewModel.OnButtonClicked();
                     buttonRead.IsEnabled = false;
+                }
+                else {
+                    StaticClass.datas.Clear();
                 }
             }
             else

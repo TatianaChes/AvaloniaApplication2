@@ -10,6 +10,7 @@ namespace AvaloniaApplication2.Model
         public DataTable table;
         public int owner;
         public string file_name;
+        public static bool LetRead = true;
 
         public StaticClass(DataTable table, int owner, string file_name)
         {

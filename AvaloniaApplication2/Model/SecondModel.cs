@@ -40,7 +40,7 @@ namespace AvaloniaApplication2.Model
             {
                 try
                 {
-                    //  Подключение к базе данных SQL Server
+                    //Подключение к базе данных SQL Server
                     using (SqlConnection sqlConn = new SqlConnection(ConnectionString)) // при использовании using, close не прописывается 
                     {
                         sqlConn.Open();
