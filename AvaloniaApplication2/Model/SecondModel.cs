@@ -44,7 +44,7 @@ namespace AvaloniaApplication2.Model
                     using (SqlConnection sqlConn = new SqlConnection(ConnectionString)) // при использовании using, close не прописывается 
                     {
                         sqlConn.Open();
-                        string commandText = "INSERT INTO fortest.tableforNedopostavki (ko_all,nomk_ls,store_code,rpt_date) " +
+                        string commandText = "INSERT INTO dbo.otchet_nedopost (ko_all,nomk_ls,store_code,rpt_date) " +
                             "VALUES (@value1, @value2, @value3, @value4)";
                         foreach (DataRow row in dataItem.table.Rows)
                         {

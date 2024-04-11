@@ -69,13 +69,12 @@ namespace AvaloniaApplication2.Model
                     //break;
                     return false;
                 }
-                if (
-                    (!decimal.TryParse(row["Сумма остатка по контракту"].ToString(), out _))
-                    || row["Сумма остатка по контракту"].ToString() == ""
-                    || row["Сумма остатка по контракту"] == DBNull.Value)
+                if (row["Сумма остатка по контракту"].ToString() == "" || row["Сумма остатка по контракту"] == DBNull.Value)
                 {
-                    //isColumnNumeric = false;
-                    //break;
+                    row["Сумма остатка по контракту"] = 0.0;
+                }
+                else if (!decimal.TryParse(row["Сумма остатка по контракту"].ToString(), out _))
+                {
                     return false;
                 }
             }
